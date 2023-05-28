@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&family=Taviraj:wght@600&display=swap');
+
+.pb-5{
+    padding-bottom: 3rem;
+}
+.pb-3{
+    padding-bottom: 1rem;
+}
+.css-m0g2nm{
+    padding-top: 84px !important;
+    padding-bottom: 0 !important;
+}
+:root {
+    overflow: hidden;
+}
+
+*::-webkit-scrollbar {
+    width: 15px;
+}
+  
+*::-webkit-scrollbar-track {
+    opacity: 0;
+    background-color: transparent;
+    border-radius: 100px;
+  }
+  
+*::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    border: 5px solid transparent;
+    background-clip: content-box;
+    background-color: #EA6000;
+  }
+
+.next_btn_container {
+    position: absolute;
+    box-sizing: border-box;
+    padding: 15px 20px;
+    bottom: 0;
+    left:0;
+    width: 100%;
+}
+
+.next_btn_container button {
+    width: 100%;
+}

@@ -1,0 +1,19 @@
+.handwriting_image {
+  height: auto;
+  width: 80%;
+}
+.container {
+  text-align: center;
+  /* background-color: #77dd77; */
+}
+
+.answer_section {
+  display: flex;
+  flex-direction: column;
+}
+.answer_section input {
+  border-radius: 4px;
+  margin-bottom: 6px;
+  border: none;
+  padding: 6px 10px;
+}

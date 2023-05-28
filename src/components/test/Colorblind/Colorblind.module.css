@@ -1,0 +1,36 @@
+.ishihara_image {
+  height: 250px;
+  width: 250px;
+}
+.container {
+  text-align: center;
+  /* background-color: #77dd77; */
+}
+
+.instruction {
+  color: red;
+}
+
+.answer_section {
+  display: flex;
+  flex-direction: column;
+}
+.answer_section input {
+  border-radius: 4px;
+  margin-bottom: 6px;
+  border: none;
+  padding: 6px 10px;
+}
+
+.next_btn_container {
+  box-sizing: border-box;
+  padding: 15px 0;
+  bottom: 0;
+  left:0;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.next_btn_container button {
+  width: 100%;
+}

@@ -1,0 +1,24 @@
+.container {
+    background-color: #addfad;
+    padding: 8px;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #355e3b;
+    padding: 5px;
+    border-radius: 4px;
+    color: white;
+}
+
+.test_container {
+    display: flex;
+    justify-content: center;
+}
+
+.questions {
+    margin-top: 6px;
+    font-weight: bold;
+}
