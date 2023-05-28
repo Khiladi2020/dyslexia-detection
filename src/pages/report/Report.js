@@ -18,6 +18,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import { Box, Card,Button, CardHeader } from '@mui/material';
 import { useEffect } from 'react';
 import { getData } from 'src/utils/storageManager';
+import { display } from '@mui/system';
 
 // ----------------------------------------------------------------------
 const percentage = 66;
@@ -61,7 +62,14 @@ const pleaseReadSavedData = (key, data)=>{
   else if(key === TEST_KEYS[3]){
     data = data?.questions
     if(!data?.score) return undefined
-    return {label: `${data.score} out of ${data.maxScore}`}
+    
+    let additionalRemark = ""
+    if(data.score > 90) additionalRemark = "Your Reaction is GREAT"
+    else if(data.score > 80) additionalRemark = "Your Reaction is GOOD"
+    else if(data.score > 70) additionalRemark = "Your Reaction is SLIGHTLY SLOW there is scope for improvement"
+    else additionalRemark = "Your Reaction is SLUGISH need lot of improvement"
+
+    return {label: `${data.score} out of ${data.maxScore}`, additionalRemark}
   }
   else if(key === TEST_KEYS[4]){
     if(!data?.questions) return undefined
@@ -94,6 +102,12 @@ export default function DashboardApp() {
         recoveredData[val] = pleaseReadSavedData(val, getData(val))
       })
 
+      recoveredData.userDetails = {
+        name: localStorage.getItem("name"),
+        age: localStorage.getItem("age"),
+        reportId: localStorage.getItem("testid")
+      }
+
       setReportData(recoveredData)
     }
     readData()
@@ -118,6 +132,33 @@ export default function DashboardApp() {
               ]}
             />
           </Grid> */}
+
+          {reportData["userDetails"] && (
+            <Grid item xs={12} md={12} lg={12}>
+              <Card>
+                <CardHeader title="User Details"/>
+                <CardContent>
+                  <div>
+                  <div style={{marginBottom: 10}}>
+                      <strong>REPORT ID: </strong>
+                      <span>{reportData["userDetails"].reportId}</span>
+                    </div>
+                  </div>
+                  <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                    <div>
+                      <strong>NAME: </strong>
+                      <span>{reportData["userDetails"].name}</span>
+                    </div>
+
+                    <div>
+                      <strong>AGE: </strong>
+                      <span>{reportData["userDetails"].age}</span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+          </Grid>
+          )}
 
           {reportData[TEST_KEYS[0]] && ( 
             <Grid item xs={12} md={12} lg={12}>
@@ -208,6 +249,7 @@ export default function DashboardApp() {
                   <CardHeader title="Reaction Test"/>
                   <CardContent>
                     {reportData[TEST_KEYS[3]].label}
+                    <p>{reportData[TEST_KEYS[3]].additionalRemark}</p>
                   </CardContent>
                 </Card>
             </Grid>

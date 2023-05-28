@@ -67,11 +67,11 @@ const Reaction = (props) => {
 
   const calculatePoints = (time) => {
     let sc = 0;
-    if (time <= 0) sc = 12;
     if (time < 1) sc = 10;
     else if (time < 2) sc = 9;
     else if (time < 3) sc = 8;
-    else if (time < 5) sc = 7;
+    else if (time < 4) sc = 7;
+    else if (time < 5) sc = 6;
     else if (time < 6) sc = 5;
     else if (time < 8) sc = 2;
     else if (time < 11) sc = 5;
@@ -99,12 +99,12 @@ const Reaction = (props) => {
     if (props.index === props.totalQuestions - 1) {
       props.saveData("questions", {
         score: score.current,
-        maxScore: props.totalQuestions * 12,
+        maxScore: props.totalQuestions * 10,
         remark: "NA"
       });
-      alert(
-        `Score of user is ${score.current} out of ${props.totalQuestions * 12}`
-      );
+      // alert(
+      //   `Score of user is ${score.current} out of ${props.totalQuestions * 10}`
+      // );
     }
 
     props.onSubmit();

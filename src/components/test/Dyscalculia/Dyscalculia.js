@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Dyscalculia.module.css";
 import { Button } from "@mui/material";
 import { TYPES } from "src/data/TEST_DYSCALCULIA";
@@ -18,6 +18,9 @@ const Dyscalculia = (props) => {
   });
   const [selected, setSelected] = useState(false);
   const [finalResponse, setFinalResponse] = useState({});
+  const finalResponseRef = useRef({})
+  const answerRef = useRef({})
+  
   const questionTypes = TYPES;
 
   const [speak]= useSpeechModule()
@@ -35,6 +38,10 @@ const Dyscalculia = (props) => {
       isCurrentCorrect: isCorrect,
       currentType: questionType,
     });
+    answerRef.current = {
+      isCurrentCorrect: isCorrect,
+      currentType: questionType,
+    }
     setSelected(true);
   };
 
@@ -48,21 +55,24 @@ const Dyscalculia = (props) => {
     //   finalResponse[questionTypes[answer.currentType].category] = 0;
     // }
 
-    const category = TYPES[answer.currentType].category
+    const category = TYPES[answerRef.current.currentType].category
     console.log('ravilcat',category,props.data)
 
     if (answer.isCurrentCorrect) {
+      const val = finalResponseRef.current
+      finalResponseRef.current = ({...val, [category]: val[category] ? val[category] + 1 : 1})
+
       setFinalResponse(val => ({...val, [category]: val[category] ? val[category] + 1 : 1}));
     }
 
     //If it's the last question store the report in local storage
-    if (props.index === 24) {
+    if (props.index === props.totalQuestions - 1) {
       const temp = {}
-      for (let category in finalResponse) {
+      for (let category in finalResponseRef.current) {
         for (let type in TYPES) {
           if (TYPES[type].category === category) {
             temp[category] =
-              (finalResponse[category] / TYPES[type].count) * 100;
+              (finalResponseRef.current[category] / TYPES[type].count) * 100;
             break;
           }
         }
@@ -72,6 +82,7 @@ const Dyscalculia = (props) => {
       props.saveData("Dyscalculia", temp);
     }
     setSelected(false)
+    console.log("ravil dyscalculai",props.index, answer, props.data)
 
     props.onSubmit();
   };
