@@ -128,7 +128,7 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   );
 
   return (
-    <RootStyle >
+    <RootStyle className='hidden-print'>
       <MHidden width="lgUp">
         <Drawer
           open={isOpenSidebar}

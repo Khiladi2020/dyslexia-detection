@@ -383,9 +383,9 @@ export default function DashboardApp() {
                     <CardHeader title="Writing Test" />
                       <Box sx={{ m:5, p:5 }}>
                         <div style={{display:"flex"}}>                        
-                          <img src="https://learningabledkids.com/images/worksamples/k12worksamples/8thgradeessay.jpg" height={256} />
+                          <img src="/static/handwritten_text.png" height={256} />
                         
-                          <img src="https://fileuploadapp.blob.core.windows.net/tutorial-container/photo_2022-08-26_15-09-21.jpg" height={256} />
+                          {/* <img src="https://fileuploadapp.blob.core.windows.net/tutorial-container/photo_2022-08-26_15-09-21.jpg" height={256} /> */}
                         </div>
                     </Box>
                 </Card>

@@ -43,3 +43,13 @@
 .next_btn_container button {
     width: 100%;
 }
+
+@media print {
+    .hidden-print {
+      display: none !important;
+    }
+    body, html, * {
+        width: 100%;
+        height: fit-content;
+    }
+  }
